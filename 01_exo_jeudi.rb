@@ -23,5 +23,16 @@ price_array = []
 
 end
  
-
 cryptomonaie("https://coinmarketcap.com/all/views/all/")
+
+
+def crypto_every_hour
+	
+each 3.downto(0) do 
+ cryptomonaie("https://coinmarketcap.com/all/views/all/")
+  sleep 1
+
+end
+end
+
+crypto_every_hour
