@@ -1,2 +1,2 @@
 # exo_jeudi
-Réalisé avec Priscille de la Tour 
+Réalisé Par Louis Martin du Nord et Priscille de la Tour 
