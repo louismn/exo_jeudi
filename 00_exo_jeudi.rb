@@ -7,7 +7,8 @@ require 'pry'
 
 def get_the_email_of_a_townhal_from_its_webpage(url)
   page = Nokogiri::HTML(open(url))
-  p page.css('/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').text
+  town_hall = page.css('/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').text
+  puts "l'adresse mail sur la page #{url} est #{town_hall}"
 end
 
 get_the_email_of_a_townhal_from_its_webpage('http://annuaire-des-mairies.com/95/andilly.html')
@@ -20,19 +21,21 @@ def get_all_the_urls_of_val_doise_townhalls
 
   page = Nokogiri::HTML(open('http://annuaire-des-mairies.com/val-d-oise.html'))
   links = page.css('a').select { |link| link['class'] == 'lientxt' }
-  links.each { |link| @array_link.push @url_start + link['href']}
-  puts @array_link
+  links.each { |link| @array_link.push @url_start + link['href'].delete_prefix(".")}
+  print "L'ensemble des liens présents sur http://annuaire-des-mairies.com/val-d-oise.html sont #{ @array_link}"
 
 end
 
 get_all_the_urls_of_val_doise_townhalls
 
 
-
-=begin
+	
 def perform
- get_the_email_of_a_townhal_from_its_webpage(get_all_the_urls_of_val_doise_townhalls)
+	@array_link.each do |n|
+	 puts get_the_email_of_a_townhal_from_its_webpage(n)
+	end
   end
 
 perform
-=end
+
+
